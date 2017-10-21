@@ -10,7 +10,7 @@ the project's name is built from the first letters of the language/tools/product
 
 Just a demo to show how the language, frameworks and tools work together. 
 
-[detailed description here](https://www.sothawo.com/2017/07/a-simple-web-based-chat-application-built-with-kotlin-vaadin-spring-boot-and-apache-kafka/)
+[detailed description here](https://www.sothawo.com/2017/10/the-simple-web-based-chat-application-now-implemented-with-java/)
 
 ## the docker directory
 
@@ -27,7 +27,7 @@ running in swarm mode. To get it going:
     cd ../..
     mvn package 
     cd target
-    sh build-docker-images.sh
+    sh ./build-docker-images.sh
     cd ../docker
     docker stack deploy --compose-file=docker-compose.yml javasbak
 
