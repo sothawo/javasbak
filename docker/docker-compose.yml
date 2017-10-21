@@ -1,0 +1,42 @@
+version: '3'
+
+# version 3 can be used with docker stack deploy --compose-file=docker-compose.yml stack-name
+# images must be prebuilt
+
+networks:
+  javasbak:
+    driver: overlay
+
+services:
+
+  zookeeper:
+    image: javasbak-zookeeper:latest
+    ports:
+      - "2181:2181"
+    networks:
+      - javasbak
+    deploy:
+      mode: replicated
+      replicas: 1
+
+  kafkabroker:
+    image: javasbak-kafkabroker:latest
+    command: ["--override", "zookeeper.connect=zookeeper:2181"]
+    ports:
+      - "9092:9092"
+    networks:
+      - javasbak
+    deploy:
+      mode: replicated
+      replicas: 1
+
+  javasbak:
+    image: javasbak:latest
+    command: ["--spring.kafka.bootstrap-servers=kafkabroker:9092"]
+    ports:
+      - "8080:8080"
+    networks:
+      - javasbak
+    deploy:
+      mode: replicated
+      replicas: 1
