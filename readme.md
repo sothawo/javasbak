@@ -30,5 +30,3 @@ running in swarm mode. To get it going:
     sh ./build-docker-images.sh
     cd ../docker
     docker stack deploy --compose-file=docker-compose.yml javasbak
-
-
